@@ -17,8 +17,9 @@ currentLocation = "Abandoned Campsite"
 placesToTravel = [["Golden Nest", "Dense Forest", "Crashed Alien Pod", "Thicket", "Streambank", "Abandoned Campsite"],[400,300,200,100,75,0]]
 distanceToHome = 0
 activityMenu = ["View Stats", "Travel", "Shop", "Inventory"]
-itemsToBuy = [["potion", "burnHeal", "iceHeal", "statBoost", "cheapVase", "expensiveVase", "garbage"],[100, 50, 50, 200, 25, 300, 0]]
-inventory = ["potion"]
+itemsToBuy = [["potion", "burnHeal", "iceHeal", "statBoost"],[100, 50, 50, 200]]
+itemsToFind = [["potion", "burnHeal", "iceHeal", "statBoost", "cheapVase", "expensiveVase", "garbage"],[100, 50, 50, 200, 25, 300, 0]]
+inventory = ["potion","iceHeal","potion","statBoost"]
 
 
 def indexInList(item, myList):
@@ -57,7 +58,17 @@ def starLine(numRows, numSleep):
     for i in range(numRows):
         print(sLine)
     time.sleep(numSleep)
-
+    
+    
+def showInventory(inventoryList):
+    print("\n--- Inventory ---")
+    if (len(inventoryList) < 1):
+        print("Inventory is Empty!\n")
+        return
+    uniqInventoryList = list(set(inventoryList))
+    for i in range(len(uniqInventoryList)):
+        print(str(i)+")" + uniqInventoryList[i] + "("+str(inventoryList.count(uniqInventoryList[i]))+")")
+    print()
 
 print("Welcome to the Golden Egg Hunt!")
 starLine(3, 1)
@@ -84,4 +95,7 @@ starLine(1, 3)
 
 print("Long ago, in a forgotten age, the Golden Egg was hidden deep within a hostile forest.")
 starLine(1, 6)
+
+        
+        
 
