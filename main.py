@@ -418,9 +418,10 @@ def record_score():
     """Reads the high score (points) from file"""
     try:
         with open("highscore.txt", "r") as f:
-            return int(f.read())
-    except (FileNotFoundError, ValueError):
-        return "File not found. Unable to read score."
+            score = int(f.read().strip())
+            return score
+    except FileNotFoundError and ValueError:
+         0  # If file doesn't exist, return 0 as high score
 
 def save_score(users_score):
     record = record_score()
@@ -472,8 +473,8 @@ def battle_alien(user, aliens_type):
         elif option == "2":
             if "potion" in user.inventory:
                 user.inventory.remove("potion")
-                user.health = min(user.health + 30, user.max_health)
-                print("> Your health restored!")
+                user.health = min(user.health + 50, user.max_health)
+                print("> Your health increased up to 50 HP!")
             else:
                 print("> So sad( No potions left!")
                 
@@ -607,6 +608,13 @@ def main(): # main game fucntion
                     if input("Take it? (yes/no): ").lower() == 'yes':
                         user.inventory.extend(game_map['items'])
                         game_map['items'] = [] # Remove items from room
+
+                        if "golden egg" in user.inventory:
+                            user.score = user.score + 500
+                            print("\n You found Golden Egg! You win this game")
+                            save_score(user.score)
+                            launch_game = False
+
                 input("Press Enter to continue...")
                 
             elif action == "shop":
