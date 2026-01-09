@@ -439,8 +439,13 @@ def create_character():
     print("\n Hi. Welcome to Golden Egg Game created by UEA Students. Main rule of the game to survive and find golden egg.\n")
     print(f"=== Creating character === (Current High Score: {high_score})")
     
-    for i in range(len(CLASS_TYPES)):
-        print(f"{i}) {CLASS_TYPES[i]} | Stat Names: {STAT_NAMES} | Stats: {CLASS_STATS[i]}")
+
+    for i in range(len(CLASS_TYPES)): 
+        print(f"\n{CLASS_TYPES[i]}") 
+
+        for j in range(len(CLASS_STATS[i])): 
+            print(STAT_NAMES[j], CLASS_STATS[i][j])
+    
     
     while True:
         try:
