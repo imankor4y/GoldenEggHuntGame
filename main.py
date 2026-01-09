@@ -440,7 +440,7 @@ def create_character():
     print(f"=== Creating character === (Current High Score: {high_score})")
     
     for i in range(len(CLASS_TYPES)):
-        print(f"{i}) {CLASS_TYPES[i]} | Stats: {CLASS_STATS[i]}")
+        print(f"{i}) {CLASS_TYPES[i]} | Stat Names: {STAT_NAMES} | Stats: {CLASS_STATS[i]}")
     
     while True:
         try:
