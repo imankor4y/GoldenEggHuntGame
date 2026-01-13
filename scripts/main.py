@@ -464,7 +464,7 @@ def create_character():
     return User(name, choice)
 
 def battle_alien(user, aliens_type):
-    print(f"\nBe care. {aliens_type.name} attacks you!")
+    print(f"\nBe careful. {aliens_type.name} attacks you!")
     
     while aliens_type.is_alive() and user.health > 0:
         print(f"\nUser: {user.health}/{user.max_health} HP | Alien: {aliens_type.health} HP")
@@ -585,11 +585,12 @@ def main(): # main game fucntion
                     result = battle_alien(user, current_alien)
                     
                     if result == "dead":
-                        print("\n=== GAME OVER ===")
+                        print("\n=== You lost! GAME OVER ===")
+                        print(f"\n{game_map['alien']} killed you!")
                         save_score(user.score) # Saves Score 
                         break
                     elif result == "won":
-                        # Remove alien from game if it s die
+                        # Remove alien from game if it s dies
                         game_map['alien'] = None 
 
             print("-" * 40)
@@ -616,7 +617,10 @@ def main(): # main game fucntion
 
                         if "golden egg" in user.inventory:
                             user.score = user.score + 500
+                            
                             print("\n You found Golden Egg! You win this game")
+
+                            print(f" Your score: {user.score}")
                             save_score(user.score)
                             launch_game = False
 
